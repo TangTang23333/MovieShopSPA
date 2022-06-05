@@ -1,0 +1,105 @@
+<header>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/']">
+        Tang's MovieShop <i class="fas fa-film"></i>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: space-between;">
+
+       
+        <div style="display: flex; justify-content: center; align-items: center;">
+          
+          <!-- genre dropdown -->
+          <ul class="navbar-nav me-4 mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                GENRES
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li *ngFor="let genre of genres">
+                  <a class="dropdown-item" [routerLink]="['movies/genre', genre.id]">{{genre.name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- search bar -->
+          <form (ngSubmit)="searchMovies()" style="display: flex;">
+            
+
+              <input style="color:white; background-color: black; border:1px white solid; height: 30px; border-radius: 15px;" [(ngModel)] ="keyword"
+              type="text" class="form-control" id="keyword" name="keyword"/>
+            
+            <button type="submit" style="margin-left:5px;text-decoration: none; border:none; background-color: rgb(36, 35, 35);">
+              <i class="bi bi-search" style="color: white; font-size: 22px;"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- shopping cart show all the time -->
+        <div style="display: flex;">
+          <li class="nav-item" style="justify-content: end;">
+            <a [routerLink]="['/user/cart']" 
+            aria-label="View your shopping cart" style="text-decoration:none;">
+              <i style="color: white; font-size:30px;" class="fas fa fa-shopping-cart fa-lg"></i>
+              <span
+                style="height: 30px; width:30px; vertical-align: top; border-radius: 50%; background-color: lightgray; position: relative; left:-13px; top:-10px; color: black; padding: 1px 5px; font-weight: bolder;">
+                {{cartCount}}
+              </span>
+            </a>
+          </li>
+
+          <!-- show user menu  when loggin  -->
+          <div *ngIf="isLoggedIn" class="dropdown" >
+            <button class="btn btn-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{currentUser.given_name + " " + currentUser.family_name}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" [routerLink]="['/user/profile']"><i class="fas fa-user-edit"
+                    style="margin-right: 10px;"></i>Profile</a></li>
+              <li><a class="dropdown-item" (click) ="logOut()"><i class="fas fa-sign-out-alt"
+                    style="margin-right: 10px;"></i>Logout</a></li>
+              <li><a class="dropdown-item" [routerLink]="['user/favorites']"><i class="fas fa-heart"
+                    style="margin-right: 10px;"></i>Favorites</a></li>
+              <li><a class="dropdown-item" [routerLink]="['user/purchases']"><i class="fas fa-shopping-bag"
+                    style="margin-right: 10px;"></i>Purchased</a></li>
+              <li><a class="dropdown-item" [routerLink]="['user/reviews']"><i class="far fa-edit"
+                    style="margin-right: 10px;"></i>Reviews</a></li>
+            </ul>
+          </div>
+
+
+          <!-- login/register button for loggin  -->
+          <div *ngIf="!isLoggedIn"  style="display: flex; justify-content: space-between">
+            <a class="nav-link text-dark me-2" [routerLink]="['account/register']"><button id="registerbutton"
+                class="btn btn-outline-light">Register
+              </button></a>
+            <a class="nav-link text-dark" [routerLink]="['account/login']"><button id="loginbutton"
+                class="btn btn-outline-light">Login </button></a>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </nav>
+
+
+
+
+</header>

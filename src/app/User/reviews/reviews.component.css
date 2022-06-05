@@ -1,0 +1,7 @@
+.container-fluid {
+    padding: 80px;
+}
+
+.row {
+    display: flex;
+}

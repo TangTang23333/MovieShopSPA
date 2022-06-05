@@ -1,0 +1,87 @@
+<div class="text-center">
+
+
+
+  <div class="rounded">
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-6 col-lg-3 col-sm-4 col-xl-2" *ngFor="let movie of pageOfMovies.data">
+
+          <app-movie-card-brief [id]="movie.id" [title]="movie.title" [posterURL]="movie.posterURL">
+          </app-movie-card-brief>
+
+        </div>
+
+
+      </div>
+
+      <div>
+      <nav style="margin-top: 30px; margin-bottom: 20px;" aria-label="Page navigation">
+        <ul class="pagination">
+
+          <li class="page-item" *ngIf="pageOfMovies.pageIndex > 1">
+            <a class="page-link" aria-label="First">
+            <span aria-hidden="true" (click)="getPage(1)">&laquo; &laquo;</span> </a>
+          </li>
+
+          <li class="page-item" *ngIf="pageOfMovies.pageIndex > 1">
+            <a class="page-link" aria-label="Prev" (click)="getPage(pageOfMovies.pageIndex-1)"> &laquo;</a>
+          </li>
+          
+          <li class="page-item" *ngIf="pageOfMovies.pageIndex > 3">
+            <a class="page-link">....</a>
+          </li>
+          
+          <li  class="page-item " *ngIf="pageOfMovies.pageIndex >= 3">
+            <a class="page-link" (click)="getPage(pageOfMovies.pageIndex-2)">{{pageOfMovies.pageIndex-2}}</a>
+          </li>
+          
+          <li  class="page-item" *ngIf="pageOfMovies.pageIndex >= 2">
+            <a class="page-link" (click)="getPage(pageOfMovies.pageIndex-1)">{{pageOfMovies.pageIndex-1}}</a></li>
+
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" >{{pageOfMovies.pageIndex}}</a>
+          </li>
+          
+          <li  class="page-item" *ngIf="pageOfMovies.pageIndex < pageOfMovies.totalPages-1">
+            <a class="page-link" (click)="getPage(pageOfMovies.pageIndex+1)">{{pageOfMovies.pageIndex+1}}</a>
+          </li>
+         
+          <li  class="page-item" *ngIf="pageOfMovies.pageIndex <= pageOfMovies.totalPages-2">
+            <a class="page-link" (click)="getPage(pageOfMovies.pageIndex+2)">{{pageOfMovies.pageIndex+2}}</a>
+          </li>
+         
+         <li class="page-item" *ngIf="pageOfMovies.pageIndex < pageOfMovies.totalPages-2">
+            <a class="page-link">....</a>
+          </li>
+         
+          <li class="page-item"  *ngIf="pageOfMovies.pageIndex < pageOfMovies.totalPages -3" >
+            <a class="page-link" (click)="getPage(pageOfMovies.totalPages)" >{{pageOfMovies.totalPages}}</a>
+          </li>
+          
+          <li class="page-item"  *ngIf="pageOfMovies.pageIndex < pageOfMovies.totalPages">
+            <a class="page-link" aria-label="Next" (click)="getPage(pageOfMovies.pageIndex+1)"> &raquo;</a>
+          </li>
+
+          <li class="page-item" *ngIf="pageOfMovies.pageIndex < pageOfMovies.totalPages">
+            <a class="page-link" aria-label="End" (click)="getPage(pageOfMovies.totalPages)">&raquo; &raquo;</a>
+          </li>
+
+
+        </ul>
+      </nav>
+    </div>
+
+      
+
+
+
+
+
+
+    </div>
+  </div>
+
+</div>

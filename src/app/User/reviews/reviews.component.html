@@ -1,0 +1,15 @@
+<div>
+  <div class="container-fluid">
+
+    <h3>Reviews</h3>
+
+    <div clas="row" style="display: flex;">
+      <div *ngFor="let review of reviews" class="me-5 mb-5  col-6 col-lg-3 col-sm-4 col-xl-2">
+        <app-user-review-card [title]="review.title" [rating]="review.rating" [reviewText]="review.reviewText"
+          [posterURL]="review.posterURL" [movieId]="review.movieId" 
+          (removeItemEvent)="removeReview($event)"  (editItemEvent)="editReview($event)">
+        </app-user-review-card>
+      </div>
+    </div>
+  </div>
+</div>

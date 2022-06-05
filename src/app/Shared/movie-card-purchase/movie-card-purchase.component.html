@@ -1,0 +1,54 @@
+<div class="card mb-4 ml-5 d-flex" style="border:none;">
+    <a href="movies/details/{{id}}">
+        <img class="img-fluid" src="{{posterURL}}" alt="{{title}}" style="width: 100%;">
+    </a>
+
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" attr.data-bs-target="#PurchaseDetailModal-{{id}}">
+        Purchase Details
+    </button>
+
+
+
+
+    <!-- movie purchase detail model -->
+    <div class="modal fade" id="PurchaseDetailModal-{{id}}" tabindex="-1" aria-labelledby="PurchaseDetailModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Purchase Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img style="width:185px; height: 250px;" src="{{posterURL}}" alt="{{title}}" />
+
+
+                    <div class="container ml-20" style="font-size:smaller; font-weight: bold;">
+                        <div class="container d-flex " style="padding: 5px 0px;">
+                            <p class="m-1" style="width: 220px;"><i class="far fa-calendar-alt" style="width: 50px;"></i> Purchased Date</p>
+                            <p class="m-1"style="padding: 2px 5px;background-color: black; border-radius:10px; color: white;">{{purchaseDate.substring(0,10)}}
+                            </p>
+                        </div>
+                        <hr class="m-0" style="border: 1px solid black" />
+                        <div class="container d-flex " style="padding: 5px 0px;">
+                            <p class="m-1" style="width: 220px;"><i class="fas fa-dollar-sign" style="width: 50px;"></i>Purchased Price</p>
+                            <p  class="m-1" style="padding: 2px 5px;background-color: black; border-radius:10px; color: white;">$ {{purchasePrice}}</p>
+                        </div>
+                        <hr class="m-0" style="border: 1px solid black" />
+                        <div class="container d-flex " style="padding: 5px 0px;">
+                            <p class="m-1" style="width: 220px;"><i class="far fa-check-circle" style="width: 50px;"></i>Purchased Number</p>
+                            <p class="m-1" style="padding: 2px 5px;background-color: black; border-radius:10px; color: white;">{{purchaseNumber}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Watch Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

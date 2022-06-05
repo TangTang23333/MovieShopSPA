@@ -1,0 +1,34 @@
+<div class="col-md-4" style="margin-top: 50px; margin-left: auto;margin-right: auto;">
+  <!-- show error message -->
+  <span class="alert alert-danger" *ngIf="invalidLogin">Something went wrong with login, please try again.</span>
+  <form  [formGroup] ="form" (ngSubmit)="submitForm()" >
+    <div style="display: flex; justify-content: center;">
+      <mat-card class="form-container" style="padding: 80px;">
+        <mat-card-title>Login</mat-card-title>
+
+        <!-- Username -->
+        <div>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+        </div>
+
+
+        <!-- Password -->
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+          </mat-form-field>
+        </div>
+
+
+        <mat-card-actions>
+          <button type="submit" mat-raised-button color="primary">Login</button>
+        </mat-card-actions>
+
+      </mat-card>
+    </div>
+  </form>
+</div>

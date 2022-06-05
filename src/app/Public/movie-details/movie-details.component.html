@@ -1,0 +1,277 @@
+<div class="row" style=" background-color: black; width: 100%; margin: 0px; padding: 0px; color: white;  ">
+
+
+  <div class="movie-summary" style="padding-left: 200px; display: flex; justify-content: space-around;">
+    <div class="col-2" id="movie-poster">
+      <img [src]="movie.posterURL" style="height: 350px; width: 250px; margin-right: 30px;" [alt]="movie.title" />
+    </div>
+
+
+    <div class="col-5" id="movie-info" style="padding-top: 10px;">
+
+      <div style="display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
+        <h1>{{movie.title}}</h1>
+
+        <a *ngIf="isFavorite" (click)="removeFromFavorite()">
+          <i class="fas fa-heart heart" style=" cursor: pointer; color: red; margin-left: 20px; width: 35px; height: 35px;"></i>
+        </a>
+
+        <a *ngIf="!isFavorite" (click)="addToFavorite()">
+          <i class="far fa-heart" style=" cursor: pointer; color: white;  margin-left: 20px; width: 35px; height: 35px;"></i>
+        </a>
+
+
+      </div>
+      <p style="color: gray; margin-top:10px;">{{movie.tagLine}}</p>
+
+      <div class='brief' style="display: flex; justify-content: space-between; color: gray; margin-top:10px; ">
+        <p style="font-weight: bold;">{{movie.runtime}} m | {{year}} </p>
+
+        <div class='tags' style="display: flex;">
+
+
+          <!-- for each in genre -->
+          <p *ngFor="let genre of movie.genres"
+            style="padding: 0px 5px;  margin-right: 5px; border-radius: 13px; background-color:gray; color: white;">
+            {{genre.name}}</p>
+
+
+        </div>
+
+      </div>
+      <p style=" margin-top:10px;background-color: teal; border-radius: 5px; padding: 0px 5px; width: 34px; font-weight: bolder;  ">
+        {{movie.avgRating}} </p>
+      <p  style="margin-top:20px;">{{movie.overview}}</p>
+
+
+    </div>
+
+    <div class="col-2" id="movie-buttons"
+      style="display: flex; flex-direction: column; justify-content: center; align-items: center;  ">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#ReviewModal"
+        style="padding: 5px;  border-radius: 5px; width: 200px; height:50px; margin-bottom: 20px; color:white; background-color:black; border: 1px solid white; font-weight: bold; "
+        class="btn-primary-dark"> <i class="far fa-edit" style="margin-right: 8px;"></i>Review </button>
+
+      <!-- ReviewModal -->
+
+      <div class="modal fade" id="ReviewModal" tabindex="-1" aria-labelledby="ReviewModalLabel" aria-hidden="true"
+        style="color: black;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ReviewModalLabel">Review</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="rating-area" style="margin-bottom: 40px;" method="post" id="ratingform" (ngSubmit)="editReview()">
+
+
+
+                <p style="margin-bottom:20px;">Please Rate this movie from 1 to 10!</p>
+                <!-- rating dropdown-->
+                <select class="form-control" style="margin-bottom:20px; width: 80px;" class="form-select form-select-md"  id="rating" name="rating"
+                  id="rating" required [(ngModel)]="model.rating">
+                  <option value="" selected>{{model.rating}}</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+
+                <textarea rows="4" cols="50" name="reviewText" id="reviewText" class="form-control" [(ngModel)]="model.reviewText">
+               </textarea>
+
+              </form>
+            </div>
+            <div class="modal-footer" style="text-decoration:none;">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              <button type="submit" form="ratingform" class="btn btn-primary">Submit</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- !!!!!!if user has purchased this movie, then display watch now button -->
+
+      <button *ngIf="isPurchased" type="button" data-bs-toggle="modal" data-bs-target="#PurchaseModal"
+        style="display: flex;padding: 5px;  border-radius: 5px; width: 200px; height:50px; font-weight: bold; justify-content:center; align-items:center;  "
+        class="btn-primary-dark">
+        <p style="margin-bottom: 0px; justify-content:center; align-items:center;">Watch Now</p>
+      </button>
+
+      <button *ngIf="!isPurchased" type="button" data-bs-toggle="modal" data-bs-target="#PurchaseModal"
+        style="display: flex;padding: 5px;  border-radius: 5px; width: 200px; height:50px; font-weight: bold; justify-content:center; align-items:center;  "
+        class="btn-primary-dark">
+        Buy Now ${{movie.price ? movie.price : 9.9}}
+
+      </button>
+      <!-- PurchaseModal -->
+
+      <div class="modal fade" id="PurchaseModal" tabindex="-1" aria-labelledby="PurchaseModalLabel" aria-hidden="true"
+        style="color: black;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Purchase</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="display: flex; ">
+              <img [src]="movie.posterURL" style="height: 180px; width:160px; border-radius: 15px;" />
+
+              <div
+                style="margin-left: 100px; display: flex; flex-direction: column; justify-content: center; align-items:center;">
+                <p style="font-size:20px;">{{movie.title}}</p>
+                <p style="font-size:20px;">$ {{movie.price ? movie.price : 9.9}}</p>
+
+
+
+
+              </div>
+            </div>
+            <div class="modal-footer" style="text-decoration: none;">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id">
+                <button type="button" class="btn btn-primary">Add To Cart</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row details" style="display: flex;">
+  <div class="col-3" style="background-color: #edede9; padding: 50px; margin-left: 0px; width: 530px; ">
+    <div class="facts">
+      <h2 style="margin-bottom: 50px; margin-top: 50px; "> MOVIE FACTS</h2>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="background-color: #edede9;">
+          <div class='factrow' style="display: flex; align-items:center;">
+            <i style="width: 50px;" class="far fa-calendar-alt"></i>
+            <p style="margin-bottom: 0px;width: 150px;">Release Date</p>
+            <p
+              style="margin-bottom: 0px;padding: 0px 8px;background-color:black; color: white; border-radius: 10px;font-weight: bold;">
+              ${{year}}</p>
+          </div>
+
+        </li>
+
+        <li class="list-group-item" style="background-color: #edede9;">
+          <div class='factrow' style="display: flex; align-items:center;">
+            <i style="width: 50px;" class="far fa-clock"></i>
+            <p style="margin-bottom: 0px;width: 150px; margin-bottom: 0px;">Run Time </p>
+            <p
+              style=" margin-bottom: 0px; padding: 0px 8px;background-color:black; color: white; border-radius: 10px;font-weight: bold;">
+              ${{movie.runtime}} m</p>
+          </div>
+
+        </li>
+
+        <li class="list-group-item" style="background-color: #edede9;">
+          <div class='factrow' style="display: flex; align-items:center;">
+            <i style="width: 50px;" class="far fa-money-bill-alt"></i>
+            <p style="margin-bottom: 0px;width: 150px;">Box Office </p>
+            <p
+              style=" margin-bottom: 0px;padding: 0px 8px;background-color:black; color: white; border-radius: 10px;font-weight: bold;">
+              ${{movie.revenue}}</p>
+          </div>
+
+        </li>
+
+        <li class="list-group-item" style="background-color: #edede9;">
+          <div class='factrow' style="display: flex; align-items:center;">
+            <i class="bi bi-coin" style="width: 50px; justify-content:center; display:flex;"></i>
+            <p style="margin-bottom: 0px;width: 150px; ">Budget </p>
+            <p
+              style="  margin-bottom: 0px;padding: 0px 8px; background-color:black; color: white; border-radius: 10px; font-weight: bold;">
+              ${{movie.budget}}</p>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <div class="Trailer" style="margin-top: 30px; ">
+        <h3 style="margin-bottom: 60px; ">TRAILERS</h3>
+        <ul class="list-group list-group-flush">
+
+          <li *ngFor="let trailer of movie.trailers" class="list-group-item" style="background-color: #edede9;">
+            <div style="display: flex;">
+              <i class="fab fa-youtube" style="width: 50px;"></i>
+              <a href="@trailer.TrailerURL" style="text-decoration: none;">
+                <p>{{trailer.name}}</p>
+              </a>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-6" style="padding: 50px 50px 50px 0px; margin-left: 180px; ">
+
+    <h2 style="margin-bottom: 50px; margin-top: 50px;">CAST</h2>
+    <hr style="border: 1px solid lightgray;" />
+    <ul class="list-group list-group-flush">
+
+
+      <li class="list-group-item" *ngFor="let cast of movie.casts">
+        <div class='actor' style="display:flex;  align-items: center;">
+          <a href="/movies/cast/details/${{cast.id}}">
+            <img [src]="cast.profilePath" style=" width: 60px; height:60px; border-radius:30px; margin-right: 80px;"
+              onclick="" />
+          </a>
+          <div style="width: 300px;">
+            <p>{{cast.name}}</p>
+          </div>
+          <div>
+            <p>{{cast.character}}</p>
+          </div>
+
+        </div>
+      </li>
+
+
+    </ul>
+
+  </div>
+
+</div>
+
+
+<div style="width: 100%; background-color: rgba(245, 243, 243, 0.882);">
+<div class="container reviews">
+<h3 style="padding:50px; text-align: center;">REVIEWS</h3>
+<div class="row review row-cols-4 row-cols-md-3 g-4" style="width: 100%;">
+  <div class="col" *ngFor="let review of movie.reviews" >
+    <div class="card">
+     
+        <div class="rating"><p >{{review.rating}}</p></div>
+        <p>{{review.reviewText}}</p>
+     
+    </div>
+  </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,17 @@
+
+    <div class="container-fluid" style="padding: 50px;">
+        <h3> Favorite </h3>
+        <div class="row">
+           
+           
+            <div class="col-6 col-lg-3 col-sm-4 col-xl-2" *ngFor="let movie of favorites">
+                <app-movie-card-favorite [id]="movie.movieId" [title]="movie.title" [posterURL]="movie.posterURL"
+                (removeItemEvent)="removeFavorite($event)"
+                >
+                </app-movie-card-favorite>
+            </div>
+            
+        </div>
+        
+    </div>
+

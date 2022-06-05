@@ -1,0 +1,26 @@
+
+<div class="container ml-3 mt-3 p-0" style="border:none;">
+
+
+    <img class="img-fluid" [id] ="id" [src] = "posterURL" [alt] ="title">
+
+
+    <div class="info">
+        <a (click)="addToFavorite()" >
+            <i class="fas fa-heart icon" ></i> 
+        </a>
+
+        <a [routerLink]="['/movies/details/', id]">
+            <i class="fas fa-search icon"></i>
+        </a>
+
+        
+        <a (click)="addToCart()">
+            <i class="fas fa-shopping-cart icon"></i>
+        </a>
+   
+
+        
+         
+
+</div>

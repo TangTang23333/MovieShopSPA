@@ -1,0 +1,117 @@
+<div class="container">
+    <h3 style="justify-content:center; margin-top: 50px; margin-bottom: 50px; ">My Cart</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+               
+                <th>Movie</th>
+                <th>Titile</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+
+
+            <tr style="width:68%; height:165px; vertical-align: middle;" *ngFor="let item of items">
+
+                <td>
+                  <a style="text-decoration:none;">
+                    <div style="align-items:center;">
+                      <img class="img" src="{{item.posterURL}}" alt="{{item.title}}" style="height: 130px; width: 100px;">
+              
+                    </div>
+                  </a>
+                </td>
+                <td style="align-items:center;">
+                  <p style="color:black; margin-bottom: 0px;">{{item.title}}</p>
+                </td>
+                <td style="align-items:center;">
+                  <p>$ {{item.price}}</p>
+                </td>
+                <td style="justify-content:center; ">
+              
+                  
+                    <button  (click) = "removeFromCart(item.movieId)"
+                    type="button" class="btn btn-dark" style="padding: 5px; border-radius: 15px;  height:30px; font-size: 12px;">
+                      Remove
+                    </button>
+                  
+                </td>
+              </tr>
+
+            
+
+
+            <tr>
+
+                <td></td>
+                 <td>Total</td>
+                  <td>$ {{total}}</td>
+                   <td>
+                    <div id="paypal"></div>
+                    </td>
+                   
+               
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=AecRqAEGz6nCwFPZQNYNVZAvgLmV5VPFxgPtoHJSWdRiOVTd7wt6cBMeOWqdW4gQpRjlc9vM6v8e8-Yt"></script> -->
+
+<script>
+       
+        // paypal.Button.render({
+        //     //Configure environment
+        //     env: 'sandbox',
+        //     client: {
+        //         sandbox: 'AecRqAEGz6nCwFPZQNYNVZAvgLmV5VPFxgPtoHJSWdRiOVTd7wt6cBMeOWqdW4gQpRjlc9vM6v8e8-Yt'
+        //     },
+        //     //Customize button
+        //     locale: 'en_US',
+        //     style: {
+        //         size: 'small',
+        //         color: 'gold',
+        //         shape: 'pill'
+        //     },
+        //     commit: true,
+        //     //Set up a payment
+        //     payment: function (data, actions) {
+        //         return actions.payment.create({
+        //             transactions: [{
+        //                 amount: {
+        //                     total: this.total,
+        //                     currency: 'USD'
+        //                 }
+        //             }]
+        //         });
+        //     },
+        //     //Execute the payment
+        //     onAuthorize: function (data, actions) {
+        //         // data : reponse 
+                
+        //         return actions.payment.execute().then(function () {
+        //           this.userService.cartCheckOut(this.items).subscribe(res => {
+        //             if (res) {
+        //               alert("Purchase successful!");
+        //             }
+        //           });
+                  
+        //             //var url = '@Url.Action("CreatePurchase", "Purchase")';
+        //             //window.location.href = url;
+                    
+        //         });
+        //     }
+        // }, '#paypal')
+</script>
+
+
+
+
+

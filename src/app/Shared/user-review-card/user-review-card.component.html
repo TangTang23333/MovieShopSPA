@@ -1,0 +1,78 @@
+<div class="wrapper ml-3 mt-3 p-0" style="border:none;">
+  <div class="container" style="border:none;">
+    <img src="{{posterURL}}" class="img-fluid" alt="{{title}}" >
+    <div class="info">
+      <a (click)="removeReview()">
+        <i class="far fa-times-circle icon"></i>
+      </a>
+
+      <a  data-bs-toggle="modal" data-bs-target="#reviewModal"> 
+        <i class="far fa-edit icon"></i>
+      </a>
+
+
+
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div id="title-container"><h5 class="card-title">{{rating}}</h5></div>
+    <p class="card-text">{{reviewText}}</p>
+    
+  </div>
+
+  <!-- Modal -->
+<div style="position: relative;">
+<div style="position: relative;" class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true"
+style="color: black;">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="reviewModalLabel">Review</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form class="rating-area" style="margin-bottom: 40px;" method="post"  id="ratingform"
+      (ngSubmit)="editReview()">
+
+
+
+        <p style="margin-bottom:20px;">Please Rate this movie from 1 to 10!</p>
+        <!-- rating dropdown-->
+        <select style="margin-bottom:20px; width: 80px;" class="form-control" name="rating" id="rating" required [(ngModel)]="model.rating">
+          <!-- <option value="" selected></option> -->
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <textarea [value]="reviewText" 
+        rows="4" cols="50" name="reviewText" id="reviewText" class="form-control" [(ngModel)]="model.reviewText">
+            </textarea>
+
+      </form>
+    </div>
+    <div class="modal-footer" style="text-decoration:none;">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      <button type="submit"  form="ratingform" class="btn btn-primary">Submit</button>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+
+

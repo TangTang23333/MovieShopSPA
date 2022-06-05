@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from './Core/Services/account.service';
 
 // component decorator => makes it angular component 
 // every component in angular will return one view 
@@ -10,7 +11,18 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'MovieShopClient';
+  
+  title = " Movie Shop SPA";
+
+  constructor(private accountService: AccountService) {
+
+  }
+  
+  ngOnInit() {
+    this.accountService.decodeClaim();
+  }
+
+  
 }
 
 

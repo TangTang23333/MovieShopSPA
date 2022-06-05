@@ -1,0 +1,45 @@
+
+<div class="container">
+
+    <h2>User Profile</h2>
+
+    <div>
+
+        <form (ngSubmit)="editProfile()" >
+            <div class="content">
+                <p> ID</p>
+                <input   readonly class="form-control"  name="id" id="id" [(ngModel)]="user.id" />
+            </div>
+            
+            <div class="content">
+                <p> First Name</p>
+                <input name="firstname" class="form-control"  id="firstname" [(ngModel)]="user.firstname" />
+            </div>
+
+            <div class="content">
+                <p>Last Name</p>
+                <input name="lastname" class="form-control"  id="lastname" [(ngModel)]="user.lastname" />
+            </div>
+
+            <div class="content">
+                <p>Date Of Birth</p>
+                <input type="date" name="dateOfBirth" class="form-control"  id="dateOfBirth" [(ngModel)]="user.dateOfBirth" />
+            </div>
+
+            <div class="content">
+                <p>Email</p>
+                <input type="email" name="email" class="form-control"  id="email" [(ngModel)]="user.email" />
+            </div>
+
+            <div class="content">
+                <p>Phone</p>
+                <input name="phone" class="form-control"  id="phone" [(ngModel)]="user.phone" />
+            </div>
+
+
+
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>

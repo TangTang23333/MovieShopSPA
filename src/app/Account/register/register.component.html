@@ -1,0 +1,67 @@
+<div class="col-md-2" style="margin-top: 30px; margin-left: auto; margin-right: auto;">
+  <!-- method="post" -->
+  <!-- show error message -->
+  <div >
+    <span class="alert alert-danger" *ngIf="emailExisted">Email has already be registered.</span>
+    <span class="alert alert-danger" *ngIf="emailExisted">Please go to login page.</span>
+  </div>
+  <form (ngSubmit)="submitForm()" [formGroup]="Form">
+    <mat-card class="form-container" style="padding: 80px;">
+      <mat-card-title>Register</mat-card-title>
+
+
+      <div>
+        <mat-form-field>
+          <mat-label>Firstname</mat-label>
+          <input matInput formControlName="firstname" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Lastname</mat-label>
+          <input matInput formControlName="lastname" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Date Of Birth</mat-label>
+          <input type="date" matInput formControlName="dateOfBirth" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" />
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmedPassword" />
+        </mat-form-field>
+      </div>
+
+
+
+
+
+      <!-- type="submit" -->
+      <mat-card-actions>
+        <button style="padding: 5px; border-radius: 25px; background: black; color: white;" type="submit"
+          mat-raised-button color="primary">Register</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>
