@@ -40,7 +40,7 @@ style="color: black;">
         <p style="margin-bottom:20px;">Please Rate this movie from 1 to 10!</p>
         <!-- rating dropdown-->
         <select style="margin-bottom:20px; width: 80px;" class="form-control" name="rating" id="rating" required [(ngModel)]="model.rating">
-          <!-- <option value="" selected></option> -->
+          <option [value]="rating" selected></option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

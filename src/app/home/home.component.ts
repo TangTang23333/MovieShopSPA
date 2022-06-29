@@ -23,7 +23,10 @@ export class HomeComponent implements OnInit {
     // execute the moviecard observable to real data 
     this.movieService.getTop30GrossingMovies().subscribe(m => {
       this.movies = m;
+      console.log(this.movies);
     });
    }
+
+  
 
 }
