@@ -1,3 +1,14 @@
+Movie Shop Single Page Application  using Angular13, .Net core and SQL SERVER.
+
+Including Client UI for shopping, Admin portal for management of products and analysis purpose, backend API for processing http requests. 
+
+All data can be got from IMDB online database. 
+
+For personal practice purpose. 
+
+
+
+
 # MovieShopClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
