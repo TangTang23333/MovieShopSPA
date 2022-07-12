@@ -1,3 +1,6 @@
+
+# Brief Intro
+
 Movie Shop Single Page Application  using Angular13, .Net core and SQL SERVER.
 
 Including Client UI for shopping, Admin portal for management of products and analysis purpose, backend API for processing http requests. 
